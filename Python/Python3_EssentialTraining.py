@@ -623,3 +623,296 @@
 #         print(line, end=' ')
 #
 # if __name__ == "__main__": main()
+
+## Enumerating iterators
+#def main():
+#    s = 'this is a string'
+#    for i, c in enumerate(s):
+#        if c == 's': print('index {} is an s'.format(i))
+#
+#if __name__ == "__main__": main()
+
+
+## Controlling loop flow with break, continue, and else
+
+## def main():
+#     s = 'this is a string'
+#     i = 0
+#     while (i < len(s)):
+#        print(s[i], end='')
+#        i += 1
+#     else:
+#        print('else')
+#
+#if __name__ == "__main__": main()
+
+## 8. Operators
+##
+
+##
+## Performing simple arithmetic
+##
+
+# >>> 5 + 5
+# 10
+# >>> 5 * 5
+# 25
+# >>> 5 - 3
+# 2
+# >>> 5 / 3
+# 1.6666666666666667
+# >>> 5 // 3
+# 1
+# >>> 5 % 3
+# 2
+# >>> divmod(5, 3)
+# (1, 2)
+# >>> num = 5
+# >>> num += 1
+# >>> num
+# 6
+# >>> num -= 1
+# >>> num
+# 5
+# >>> num *= 5
+# >>> num
+# 25
+# >>> num // = 5
+# SyntaxError: invalid syntax
+# >>> num //= 5
+# >>> num
+# 5
+# >>> num *= 5
+# >>> num /= 5
+# >>> num
+# 5.0
+# >>>
+
+## Operating on bitwise values
+##
+
+# >>> 5
+# 5
+# >>> 0b0101
+# 5
+# >>> def b(n): print('{:08b}'.format(n))
+#
+# >>> b(5)
+# 00000101
+# >>> b(10)
+# 00001010
+# >>> b(100)
+# 01100100
+# >>> x, y = 0x55, 0xaa
+# >>> b(x)
+# 01010101
+# >>> b(y)
+# 10101010
+# >>> b(x | y)
+# 11111111
+# >>> b(x & y)
+# 00000000
+# >>> b(x ^ y)
+# 11111111
+# >>> b(x ^ 0)
+# 01010101
+# >>> b(x ^ 0xff)
+# 10101010
+# >>> b(x << 4)
+# 10101010000
+# >>> b(x >> 4)
+# 00000101
+# >>> b(~ x)
+# -1010110
+# >>>
+
+## Comparison Operators 
+
+# >>> 5 < 6
+# True
+# >>> 6 < 5
+# False
+# >>> 5 <= 6
+# True
+# >>> 5 <= 5
+# True
+# >>> 6 >= 5
+# True
+# >>> 6 >= 6
+# True
+# >>> 6 >= 7
+# False
+# >>> 5 == 5
+# True
+# >>> 5 == 6
+# False
+# >>> 6 != 7
+# True
+# >>> 6 != 6
+# False
+# >>> x, y = 5, 6
+# >>> id(x)
+# 1568356176
+# >>> id(y)
+# 1568356192
+# >>> x is y
+# False
+# >>> x is not y
+# True
+# >>> y = 5
+# >>> id(y)
+# 1568356176
+# >>> x is y
+# True
+# >>> x, y = [5], [5]
+# >>> id(x)
+# 51663136
+# >>> id(y)
+# 51663096
+# >>> x == y
+# True
+# >>> x is y
+# False
+# >>>
+
+## Operating on Boolean Values
+
+# >>> 5 == 5
+# True
+# >>> 7 < 5
+#  False
+#  >>> type(True)
+#  <class 'bool'>
+#  >>> True and False
+#  False
+#  >>> True and True
+#  True
+#  >>> True or False
+#  True
+#  >>> False or False
+#  False
+#  >>> True & True
+#  True
+#  >>> a, b = 0, 1
+#  >>> x, y = 'zero', 'one'
+#  >>> x < y
+#  False
+#  >>> a < b
+#  True
+#  NameError: name 'n' is not defined
+#  >>> 
+#  >>> if a < b and x < y: print('yes')
+#  else: print('no')
+
+#  no
+#  >>>
+
+## Operating on parts of a container with the slice operator
+##
+# Slices = part of container
+
+# >>> list = []
+# >>> list = [1,2,3,4,5,6,7,8,9,10]
+# >>> list[0]
+# 1
+# >>> list[1]
+# 2
+# >>> list[9]
+# 10
+# >>> list[0:5]
+# [1, 2, 3, 4, 5]
+# >>> list[4]
+# 5
+# >>> list[0:5]
+# [1, 2, 3, 4, 5]
+# >>> range(0, 10)
+# range(0, 10)
+# >>> for i in range(0,10): print(i)
+#
+# 0
+# 1
+# 2
+# 3
+# 4
+# 5
+# 6
+# 7
+# 8
+# 9
+# >>> list[0:10]
+# [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+# >>> list[:] = range(100)
+# >>> 
+# >>> list
+# [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99]
+# >>> list[27]
+# 27
+# >>> list[27]
+# 27
+# >>> list[27:42]
+# [27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41]
+# >>> list[27:42:3]
+# [27, 30, 33, 36, 39]
+# >>> list[27:43:3]
+# [27, 30, 33, 36, 39, 42]
+# >>> for i in list[27:43:3] : print(i)
+#
+# 27
+# 30
+# 33
+# 36
+# 39
+# 42
+# >>> list[27:43:3] = (99,99,99,99,99,99)
+# >>> list
+# [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 99, 28, 29, 99, 31, 32, 99, 34, 35, 99, 37, 38, 99, 40, 41, 99, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99]
+
+## Understanding Operator Precedence:
+#
+
+# >>> 5 * 25 + 14 / 2 # Precedence 1. * 2. / 3. + 4. -
+# 132.0
+# >>> 5 * (25 + 14) / 2 # Parenthesis used to explicit state your intentions
+# 97.5
+# >>> # If code is written poorly where the intent is not clear, than refer to the Python Operator Precedence chart to help understand the order
+# >>> # Be kind and use paranthesis to clearly state the intent of your code
+# >>>
+
+## 9. Regular Expressions
+
+# Using the re module 
+
+# - Regular expressions are a very powerful method of matching patterns in text
+# - Actually a small language in itself, regexes can be very simple or very complex
+# - Implemented in Python with the "re" module
+
+# import re
+
+# pattern = re.compile(r'\d\d\d')
+#      if re.search(regex, line): print(line)
+
+## Searching with regular expressions
+
+## Used to show all lines that contain Lenore and Nevermore
+# import re
+#
+# def main():
+#     fh = open('raven.txt')
+#     for line in fh:
+#         if re.search('(Len|Neverm)ore', line):
+#             print(line, end='')
+#
+# if __name__ == "__main__": main()
+
+# Example below for finding matches - good for finding patterns and replacing
+# import re
+#
+# def main():
+#     fh = open('raven.txt')
+#     for line in fh:
+#         match = re.search('(Len|Neverm)ore', line)
+#         if match:
+#             print(match.group())
+#
+# if __name__ == "__main__": main()
+
