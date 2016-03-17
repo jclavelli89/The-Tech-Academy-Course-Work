@@ -916,3 +916,475 @@
 #
 # if __name__ == "__main__": main()
 
+##
+## Searching with regular expressions
+##
+
+# Find and replace
+# import re
+#
+# def main():
+#     fh = open('raven.txt')
+#     for line in fh:
+#         print(re.sub('(Len|Neverm)ore', '###', line), end='')
+#
+# if __name__ == "__main__": main()
+
+# Search and replace modules
+# import re
+#
+# def main():
+#     fh = open('raven.txt')
+#     for line in fh:
+#         match = re.search('(Len|Neverm)ore', line)
+#         if match:
+#             print(line.replace(match.group(),'happy'), end='')
+#
+# if __name__ == "__main__": main()
+
+##
+## Reusing regular expressions with re compile
+##
+
+# A way to improve efficiency by putting search string in "pattern"
+# adding re.IGNORECASE will ignore case
+# import re
+#
+# def main():
+#     fh = open('raven.txt')
+#     pattern = re.compile('(Len|Neverm)ore', re.IGNORECASE)
+#     for line in fh:
+#         if re.search(pattern, line):
+#             print(pattern.sub('super happy', line), end='')
+#
+# if __name__ == "__main__": main()
+
+##
+## 10. Exceptions
+##
+
+##
+## Learning how exceptions work
+##
+
+# -Exceptions are the key method of handling errors in Python
+# -"try" something, then catch an exception with "except"
+
+# try:
+#     fh = open('filename')
+# except IOError as e:
+#     print(e)
+# else:
+#     for | in fh:print(|)
+
+# You may raise your own exceptions with "raise"
+
+##
+## Handling exceptions
+##
+
+# def main():
+#     fh = open('lines.txt')
+#     for line in fh: print(line.strip())
+#
+# if __name__ == "__main__": main()
+
+# Exmpale of try and catch
+# def main():
+#     try:
+#         fh = open('lines.txt')
+#     except:
+#         print('could not open the file. come back in 2000 years')
+#     else:
+#         for line in fh: print(line.strip())
+#
+# if __name__ == "__main__": main()
+
+##
+## Raising exceptions
+##
+
+# def main():
+#     try:
+#         for line in readfile('lines.doc'): print(line.strip())
+#     except IOError as e:
+#         print('cannot read file:', e)
+#     except ValueError as e:
+#         print('bad filename', e)
+#
+# def readfile(filename):
+#     if filename.endswith('.txt'):
+#         fh = open(filename)
+#         return fh.readlines()
+#     else: raise ValueError('Filename must end with .txt')
+#
+# if __name__ == "__main__": main()
+
+##
+## 11. Functions
+##
+
+##
+## Defining functions
+##
+
+# def main():
+#     testfunc(42)
+#
+# def testfunc(number):
+#     print('This is a test function', number)
+#
+# if __name__ == "__main__": main()
+
+# def main():
+#     testfunc(42, 43, 75)
+#
+# def testfunc(number, another, onemore):
+#     print('This is a test function', number, another, onemore)
+#
+# if __name__ == "__main__": main()
+
+# You can set default values that will deploy if no arguments are provided. This keeps the code working
+# You don't have to have a value, use None like below as well. It is special value you can test for.
+# def main():
+#     testfunc(42, 43, 75)
+#
+# def testfunc(number, another = None, onemore = 0):
+#     print('This is a test function', number, another, onemore)
+#
+# if __name__ == "__main__": main()
+
+# You can uss pass to be a filler/placeholder for a function to keep an error from generating
+
+# def main():
+#     testfunc()
+#
+# def testfunc():
+#     pass
+#
+# if __name__ == "__main__": main()
+
+
+##
+## Using lists in arguments
+##
+
+# def main():
+#     testfunc(1, 2, 3, 42, 43, 45, 46)
+#
+# def testfunc(this, that, other, *args):
+#     print(this, that, other)
+#     for n in args: print(n, end=' ')
+#
+# if __name__ == "__main__": main()
+
+##
+## Using named function arguments
+##
+
+# kwargs = Keyword Arguments
+
+# def main():
+#     testfunc(one = 1, two = 2, four = 42)
+#
+# def testfunc(**kwargs):
+#     print('This is is a test function', kwargs['one'], kwargs['two'], kwargs['four'])
+#
+# if __name__ == "__main__": main()
+
+# The only rule for arguments and calling them is that they are in the same order, but any combination there of is ok
+
+# def main():
+#     testfunc(5, 6, 7, 8, 9, 10, one = 1, two = 2, four = 42)
+#
+# def testfunc(this, that, other, *args, **kwargs):
+#     print('This is is a test function',
+#           this, that, other, args,
+#           kwargs['one'], kwargs['two'], kwargs['four'])
+#
+# if __name__ == "__main__": main()
+
+##
+## Returning values from functions
+##
+
+# The keyword return returns any type/object
+
+# def main():
+#     for n in testfunc(): print(n, end=' ')
+#
+# def testfunc():
+#     #return 'This is a test function'
+#     return range(25)
+#
+# if __name__ == "__main__": main()
+
+##
+## Creating a sequence with a generator function
+##
+
+# A generator function is a function that returns an iterator object.
+
+# def main():
+#     print('This is the function.py file.')
+#     for i in inclusive_range(0, 25, 1):
+#         print(i, end = ' ')
+#
+# def inclusive_range(start, stop, step):
+#     i = start
+#     while i <= stop:
+#         yield i
+#         i += step
+#
+# if __name__ == "__main__": main()
+
+# def main():
+#     print('This is the function.py file.')
+#     for i in inclusive_range(25):
+#         print(i, end = ' ')
+#
+# def inclusive_range(*args):
+#         numargs = len(args)
+#         if numargs < 1: raise TypeError('requires at least one argument')
+#         elif numargs == 1:
+#             stop = args[0]
+#             start = 0
+#             step = 1
+#         elif numargs == 2:
+#             (start, stop) = args
+#             step = 1
+#         elif numargs == 3:
+#             (start, stop, step) = args
+#         else: raise TypeError('inclusive_range expected at most three arguments, got {}.format(numargs)')
+#         i = start
+#         while i <= stop:
+#             yield i
+#             i += step
+#
+# if __name__ == "__main__": main()
+
+##
+## 12. Classes
+##
+
+##
+## Understanding classes and objects
+##
+
+
+# The classes themselves are the
+# blueprint for how an object is created.
+#
+# An object is an instance of a class.
+
+##
+## Using Methods
+##
+
+# Methods are functions, but within the object
+# (self) is reference to the object, not the class
+# Constructor __init__(self):
+
+
+# Methods are functions, but within the object
+# (self) is reference to the object, not the class
+# Constructor __init__(self):
+
+
+# class Duck:
+#     def __init__(self, value):
+#         # print('constructor')
+#         self._v = value
+#     def quack(self):
+#         print('Quaaack!', self._v)
+#
+#     def walk(self):
+#         print('walk like a duck.', self._v)
+#
+# def main():
+#     donald = Duck(57)
+#     frank = Duck(115)
+#     donald.quack() # The empty parenthesis is as if donald was in them.
+#     donald.walk()
+#     frank.quack()
+#     frank.walk()
+#
+# if __name__ == "__main__": main()
+
+##
+## Using Object Data
+##
+
+# class Duck:
+#     def __init__(self, color = 'white'):
+#         self._color = color
+#
+#
+#     def quack(self):
+#         print('Quaaack!')
+#
+#     def walk(self):
+#         print('walk like a duck.')
+#
+# def main():
+#     donald = Duck()
+#     donald.quack()
+#     donald.walk()
+#
+# if __name__ == "__main__": main()
+
+# class Duck:
+#     def __init__(self, **kwargs):
+#         self.variables = kwargs
+#     
+#     def quack(self):
+#         print('Quaaack!')
+# 
+#     def walk(self):
+#         print('Walks like a duck.')
+#
+#     def set_variable(self, k, v):
+#         self.variables[k] = v
+# 
+#     def get_variable(self, k):
+#         return self.variables.get(k, None)
+# 
+# def main():
+#     donald = Duck(feet = 2)
+#     donald.set_variable('color', 'blue')
+#     print(donald.get_variable('feet'))
+#     print(donald.get_variable('color'))
+# 
+#
+#
+# if __name__ == "__main__": main()
+
+##
+## Understanding Inheritance
+##
+
+# class Animal:
+#     def talk(self): print('I have something to say!')
+#     def walk(self): print('Hey! I''m walkin'' here!')
+#     def clothes(self): print('I have nice clothes')
+#
+# class Duck(Animal):
+#     def quack(self):
+#         print('Quaaack!')
+#
+#     def walk(self):
+#         super().walk() # super() tells it to add in the parent def
+#         print('walk like a duck.')
+#
+# class Dog(Animal):
+#     def clothes(self):
+#         print('I have brown and white fur')
+#
+# def main():
+#     donald = Duck()
+#     donald.quack()
+#     donald.walk()
+#     donald.clothes()
+#
+#     fido = Dog()
+#     fido.walk()
+#     fido.clothes()
+#
+#
+# if __name__ == "__main__": main()
+
+##
+## Applying Polymorphism to classes
+##
+
+# class Duck():
+#     def quack(self):
+#         print('Quaaack!')
+#
+#     def walk(self):
+#         print('walk like a duck.')
+#
+#     def bark(self):
+#         print('The duck can not bark')
+#
+#     def fur(self):
+#         print('The duck has feathers')
+#
+# class Dog():
+#     def bark(self):
+#         print('Woof!')
+#
+#     def walk(self):
+#         print('Walks like a dog')
+#
+#     def fur(self):
+#         print('The dog has brown and white fur')
+#
+#     def quack(self):
+#         print('Dog can not quack')
+#
+# def main():
+#     donald = Duck()
+#     fido = Dog()
+#     in_the_forest(donald)
+#     in_the_pond(fido)
+#
+# def in_the_forest(dog):
+#     dog.bark()
+#     dog.fur()
+#
+# def in_the_pond(duck):
+#     duck.quack()
+#     duck.walk()
+#
+#     # for o in (donald, fido):
+#     #     o.quack()
+#     #     o.walk()
+#     #     o.bark()
+#     #     o.fur()
+#
+# if __name__ == "__main__": main()
+
+##
+## Using Generators
+##
+
+# class inclusive_range:
+#     def __init__(self, *args):
+#         numargs = len(args)
+#         if numargs < 1: raise TypeError('requires at least one argument')
+#         elif numargs == 1:
+#             self.stop = args[0]
+#             self.start = 0
+#             self.step = 1
+#         elif numargs == 2:
+#             (self.start, self.stop) = args
+#             self.step = 1
+#         elif numargs == 3:
+#             (self.start, self.stop, self.step) = args
+#         else: raise TypeError('expected at most 3 arguments, got {}'.format(numargs))
+#            
+#            
+#     def __iter__(self):
+#         i = self.start
+#         while i <= self.stop:
+#             yield i
+#             i += self.step
+#
+# def main():
+#     for i in inclusive_range(25): print(i, end = ' ')
+#
+# if __name__ == "__main__": main()
+
+##
+## Using decorators
+##
+
+# Decorators are special functions that return other functions and they are used to modify the way that a function works
+
+
+
+
+
+
+
