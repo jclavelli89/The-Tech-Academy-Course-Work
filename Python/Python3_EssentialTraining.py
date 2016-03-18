@@ -1382,7 +1382,466 @@
 
 # Decorators are special functions that return other functions and they are used to modify the way that a function works
 
+# class Duck:
+#     def __init__(self, **kwargs):
+#         self.properties = kwargs
+#
+#     def quack(self):
+#         print('Quaaack!')
+#
+#     def walk(self):
+#         print('Walks like a duck')
+#
+#     def get_properties(self):
+#         return self.properties
+#
+#     def get_property(self, key):
+#         return self.properties.get(key, None)
+#
+#     @property # This is an accessor
+#     def color(self):
+#         return self.properties.get('color', None)
+#
+#     @color.setter
+#     def color(self, c):
+#         self.properties['color'] = c
+#
+#     @color.deleter
+#     def color(self):
+#         del self.properties['color']
+#
+# def main():
+#     donald = Duck()
+#     donald.color = 'orange'
+#     print(donald.get_property('color'))
+#
+# if __name__ == "__main__": main()
 
+##
+## 13. String Methods
+##
+
+# >>> 'This is a string'
+# 'This is a string'
+# >>> s = 'This is a string'
+# >>> s
+# 'This is a string'
+# >>> s.upper()
+# 'THIS IS A STRING'
+# >>> 'This is a string'.upper()
+# 'THIS IS A STRING'
+# >>> 'I am not shouting'.upper()
+# 'I AM NOT SHOUTING'
+# >>>
+# >>> 'This is a string {}'.format(42)
+# 'This is a string 42'
+# >>> 'This is a string %d' % 42
+# 'This is a string 42'
+
+##
+## Working with common string methods
+##
+
+# >>> s = "this is a string"
+# >>> s
+# 'this is a string'
+# >>> s.capitalize()
+# 'This is a string'
+# >>> s.upper()
+# 'THIS IS A STRING'
+# >>> s.lower()
+# 'this is a string'
+# >>> 'THIS IS A STRING.'.lower()
+# 'this is a string.'
+# >>> 'tHIS iS A String'.swapcase()
+# 'This Is a sTRING'
+# >>> s
+# 'this is a string'
+# >>> s.find('is')
+# 2
+# >>> s.find('ring')
+# 12
+# >>> s.replace('this', 'that')
+# 'that is a string'
+# >>> id(s)
+# 50861504
+# >>> newstring = s.upper()
+# >>> newstring
+# 'THIS IS A STRING'
+# >>> id(newstring)
+# 53427568
+# >>> s.strip()
+# 'this is a string'
+# >>> '	This is a string      '.strip()
+# 'This is a string'
+# >>> '	this is a string      '.rstrip()
+# '\tthis is a string'
+# >>> '	this is a string      '.rstrip()
+# '\tthis is a string'
+# >>> s1 = 'this is a string\n'
+# >>> s1
+# 'this is a string\n'
+# >>> s1.strip()
+# 'this is a string'
+# >>> s1.rstrip('\n')
+# 'this is a string'
+# >>> s.isalnum()
+# False
+# >>> 'thisisastring'.isalnum()
+# True
+# >>> 'thisisastring'.isalpha()
+# True
+# >>> '12345'.isdigit()
+# True
+# >>> s.isdigit()
+# False
+# >>> s.isprintable()
+# True
+# >>>
+
+##
+## Formatting Strings with str.format
+##
+
+# >>> a, b = 5, 42
+# >>> print(a, b)
+# 5 42
+# >>> 'this is {}, that is {}'.format(a, b)
+# 'this is 5, that is 42'
+# >>> s = 'this is {}, that is {}'
+# >>> s
+# 'this is {}, that is {}'
+# >>> s.format(a,b)
+# 'this is 5, that is 42'
+# >>> id(s)
+# 53831200
+# >>> new = s.format(a, b)
+# >>> id(new)
+# 53831104
+# >>> 'this is %d, that is %d' % ( a,b )
+# 'this is 5, that is 42'
+# >>> 'this is {}, that is {}'.format(b, a)
+# 'this is 42, that is 5'
+# >>> 'this is {1}, that is {0}'.format(a, b)
+# 'this is 42, that is 5'
+# >>> 'this is {1}, that is {0}, this too is {1}'.format(a, b)
+# 'this is 42, that is 5, this too is 42'
+# >>> 'this is {bob} and that is {fred}'.format(bob = a, fred = b)
+# 'this is 5 and that is 42'
+# >>> d = dict(bob = a, fred = b)
+# >>> 'this is {bob} and that is {fred}'.format(**d)
+# 'this is 5 and that is 42'
+# >>>
+
+##
+## Splitting and joining strings
+##
+
+# >>> s = 'This is a string of words'
+# >>> s.split()
+# ['This', 'is', 'a', 'string', 'of', 'words']
+# >>> 'This     is     a     string      of      words'.split()
+# ['This', 'is', 'a', 'string', 'of', 'words']
+# >>> s.split('i')
+# ['Th', 's ', 's a str', 'ng of words']
+# >>> words = s.split()
+# >>> words
+# ['This', 'is', 'a', 'string', 'of', 'words']
+# >>> for w in words: print(w)
+#
+#  This
+#  is
+#  a
+#  string
+#  of
+#  words
+#  >>> new = ':'.join(words)
+#  >>> new
+#  'This:is:a:string:of:words'
+#  >>> ', '.join(words)
+#  'This, is, a, string, of, words'
+#  >>> 
+
+##
+## Finding and using standard string methods
+##
+
+# Python documentation: string methods
+
+# >>> s = 'this is a string'
+# >>> new = s.center(80)
+# >>> new
+# '                                this is a string                                '
+# >>> len(new)
+# 80
+# >>>
+
+##
+## Creating sequences with tuples and lists 
+##
+
+# >>> t = 1,2,3,4,5
+# >>> t
+# (1, 2, 3, 4, 5)
+# >>> t[0]
+# 1
+# >>> t[4]
+# 5
+# >>> t[-1]
+# 5
+# >>> len(t)
+# 5
+# >>> min(t)
+# 1
+# >>> max(t)
+# 5
+# >>> t = (1, 2, 3, 4, 5)
+# >>> t = (1)
+# >>> t
+# 1
+# >>> type(t)
+# <class 'int'>
+# >>> t = (1,)
+# >>> x = [1,2,3,4,5]
+# >>> type(x)
+# <class 'list'>
+# >>> x[0]
+# 1
+# >>> x[-1]
+# 5
+# >>> len(x)
+# 5
+# >>> t = tuple(range(25))
+# >>> t
+# (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24)
+# >>> t[10] = 42
+# Traceback (most recent call last):
+#   File "<pyshell#23>", line 1, in <module>
+#     t[10] = 42
+# TypeError: 'tuple' object does not support item assignment
+# >>> x = list(range(25))
+# >>> x
+# [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24]
+# >>> type(x)
+# <class 'list'>
+# >>> x[10] = 42
+# >>> x
+# [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 42, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24]
+# >>>
+
+##
+## Operating on sequences with built-in methods
+##
+
+# >>> t = tuple( range(25) )
+# >>> t
+# (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24)
+# >>> type(t)
+# <class 'tuple'>
+# >>> 10 in t
+# True
+# >>> 50 in t
+# False
+# >>> 50 not in t
+# True
+# >>> t[10]
+# 10
+# >>> len(t)
+# 25
+# >>> for i in t: print(i)
+#
+# 0
+# 1
+# 2
+# 3
+# 4
+# 5
+# 6
+# 7
+# 8
+# 9
+# 10
+# 11
+# 12
+# 13
+# 14
+# 15
+# 16
+# 17
+# 18
+# 19
+# 20
+# 21
+# 22
+# 23
+# 24
+# >>> x = list(range(20))
+# >>> x
+# [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+# >>> 10 in x
+# True
+# >>> 20 in x
+# False
+# >>> for i in x: print(i)
+# 
+# 0
+# 1
+# 2
+# 3
+# 4
+# 5
+# 6
+# 7
+# 8
+# 9
+# 10
+# 11
+# 12
+# 13
+# 14
+# 15
+# 16
+# 17
+# 18
+# 19
+# >>> t[10] = 25
+# Traceback (most recent call last):
+#   File "<pyshell#16>", line 1, in <module>
+#     t[10] = 25
+# TypeError: 'tuple' object does not support item assignment
+# >>> x[10] = 25
+# >>> x
+# [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 25, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+# >>> t.count(5)
+# 1
+# >>> t.index(5)
+# 5
+# >>> t
+# (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24)
+# >>> t.append(100)
+# Traceback (most recent call last):
+#   File "<pyshell#22>", line 1, in <module>
+#     t.append(100)
+# AttributeError: 'tuple' object has no attribute 'append'
+# >>> x
+# [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 25, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+# >>> x.append(100)
+# >>> x
+# [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 25, 11, 12, 13, 14, 15, 16, 17, 18, 19, 100]
+# >>> len(x)
+# 21
+# >>> x.extend(range(20))
+# >>> x
+# [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 25, 11, 12, 13, 14, 15, 16, 17, 18, 19, 100, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+# >>> x.insert(0, 25)
+# >>> x
+# [25, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 25, 11, 12, 13, 14, 15, 16, 17, 18, 19, 100, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+# >>> x.insert(12, 100)
+# >>> 
+# >>> x
+# [25, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 25, 100, 11, 12, 13, 14, 15, 16, 17, 18, 19, 100, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+# >>> x.remove(12)
+# >>> x
+# [25, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 25, 100, 11, 13, 14, 15, 16, 17, 18, 19, 100, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+# >>> del x[12]
+# >>> x
+# [25, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 25, 11, 13, 14, 15, 16, 17, 18, 19, 100, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+# >>> x.pop()
+# 19
+# >>> x
+# [25, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 25, 11, 13, 14, 15, 16, 17, 18, 19, 100, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18]
+# >>> x.pop(0)
+# 25
+# >>> x
+# [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 25, 11, 13, 14, 15, 16, 17, 18, 19, 100, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18]
+# >>> 
+
+##
+## Organizing data with dictionaries
+## 
+
+# >>> d = { 'one': 1, 'two': 2, 'three': 3}
+# >>> d
+# {'two': 2, 'three': 3, 'one': 1}
+# >>> d = dict( one = 1, two = 2, three = 3 )
+# >>> d
+# {'two': 2, 'three': 3, 'one': 1}
+# >>> x = dict(four = 4, five = 5, six = 6)
+# >>> x
+# {'five': 5, 'four': 4, 'six': 6}
+# >>> d = dict( one  1, two = 2, three = 3, **x )
+# SyntaxError: invalid syntax
+# >>> d = dict( one = 1, two = 2, three = 3, **x )
+# >>> d
+# {'five': 5, 'four': 4, 'six': 6, 'two': 2, 'three': 3, 'one': 1}
+# >>> 'four' in x
+# True
+# >>> 'three' in x
+# False
+# >>> for k in d: print(k)
+# 
+# five
+# four
+# six
+# two
+# three
+# one
+# >>> for k, v in d.items(): print(k, v)
+# 
+# five 5
+# four 4
+# six 6
+# two 2
+# three 3
+# one 1
+# >>> d['three']
+# 3
+# >>> x['three']
+# Traceback (most recent call last):
+#   File "<pyshell#17>", line 1, in <module>
+#     x['three']
+# KeyError: 'three'
+# >>> x.get('three')
+# >>> 
+# >>> 
+# >>> d.get('three')
+# 3
+# >>> x.get('three', 'not found')
+# 'not found'
+# >>> x
+# {'five': 5, 'four': 4, 'six': 6}
+# >>> del x['four']
+# >>> x
+# {'five': 5, 'six': 6}
+# >>> x.pop('five')
+# 5
+# >>> x
+# {'six': 6}
+# >>> 
+
+##
+## Operating on character data with bytes and byte arrays 
+##
+
+# often used for converting strings
+# Do not have the file with characters
+
+
+# def main():
+#     fin = open('utf8.txt', 'r', encoding = 'utf_8') # utf_8 tells Python to ignore default encoder and decode the file
+#     fout = open('utf8.html', 'w')
+#     outbytes = bytearray()  # bytearrays are mutable
+#     for line in fin:
+#         for c in line:
+#             if ord(c) > 127:
+#                 outbytes += bytes('&#{:04d};'.format(ord(c)), encoding = 'utf_8')
+#             else: outbytes.append(ord(c))
+#     outstr = str(outbytes, encoding='utf_8')
+#     print(outstr,  file = fout)
+#     print(outstr)
+#     print('Done.')
+#
+# if __name__ == "__main__": main()
 
 
 
