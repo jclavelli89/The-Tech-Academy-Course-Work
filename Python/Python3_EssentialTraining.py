@@ -2343,3 +2343,42 @@
 ##
 ## Using unit tests:
 ##
+
+# Python includes a unit test module
+# If you submit modules to PyPI you must submit them with unit testing
+
+##
+## 19. Building a Database Application
+##
+
+##
+## Normalizing a database interface
+##
+
+# bwBD.py #
+
+##
+## Deconstructing a database application
+##
+
+# db.py
+
+
+##
+## Displaying random entries from a database
+##
+
+# Testimonials.py
+
+# Bill Weinman
+
+###
+### Template
+###
+
+# def main():
+#     print('This is is a test function')
+#
+#
+# if __name__ == "__main__": main()
+
