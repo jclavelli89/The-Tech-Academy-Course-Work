@@ -1843,7 +1843,110 @@
 #
 # if __name__ == "__main__": main()
 
+##
+## 15. File I/O
+##
+
+##
+## Opening files
+##
+
+# def main():
+#     f = open('lines.txt', 'r') # Write arguments r=read(default) w=write a=append  modifiers to R r+ = read/write  rt=text file mode or rb=binary mode
+#     for line in f: # you can also use a method .readlines() which reads the line of text
+#         print(line, end='')
+#
+# if __name__ == "__main__": main()
+
+##
+## Reading and Writing text Files
+##
+
+# def main():
+#     infile = open('lines.txt', 'r')
+#     outfile = open('new.txt', 'w')
+#     for line in infile:
+#         print(line, file = outfile, end = '')
+#     print('done')
+#
+# if __name__ == "__main__": main()
 
 
+# Reading bigger files using a buffer 
 
+# def main():
+#     buffersize = 50000 
+#     infile = open('bigfile.txt', 'r')
+#     outfile = open('new.txt', 'w')
+#     buffer = infile.read(buffersize)
+#     while len(buffer):
+#         outfile.write(buffer)
+#         print('.', end = '')
+#         buffer = infile.read(buffersize)
+#     print()
+#     print('done')
+#
+# if __name__ == "__main__": main()
 
+##
+## Reading and Writing Binary Files
+##
+
+# def main():
+#     buffersize = 50000
+#     infile = open('olives.jpg', 'rb')
+#     outfile = open('new.jpg', 'wb')
+#     buffer = infile.read(buffersize)
+#     while len(buffer):
+#         outfile.write(buffer)
+#         print('.', end = ' ')
+#         buffer = infile.read(buffersize)
+#     print()
+#     print('Done.')
+# 
+# if __name__ == "__main__": main()
+
+##
+## Databases
+##
+
+##
+## Creating a database with SQLite 3
+##
+
+# import sqlite3
+# 
+# def main():
+#     db = sqlite3.connect('test.db')  #connects to the database (if it doesn't exist)
+#     db.execute('drop table if exists test') #db.execute is the object with which we interact
+#     db.execute('create table test(t1 text, i1 int)')
+#     db.execute('insert into test(t1, i1) values(?, ?)', ('one', 1))
+#     db.execute('insert into test(t1, i1) values(?, ?)', ('two', 2))
+#     db.execute('insert into test(t1, i1) values(?, ?)', ('three', 3))
+#     db.execute('insert into test(t1, i1) values(?, ?)', ('four', 4))
+#     db.commit() # after you change any data, you commit()
+#     cursor = db.execute('select * from test order by t1') #use the cursor object to step through as an iterator to print the data, you can change '*' to i1, t1 if you want them printed in that order. 
+#     for row in cursor:
+#         print(row) #data returns in tuples 
+#
+# if __name__ == "__main__": main()
+# 
+# Using row factory to return them as a dictionary is very useful:
+
+# import sqlite3
+#
+# def main():
+#    db = sqlite3.connect('test.db')
+#    db.row_factory = sqlite3.Row
+#    db.execute('drop table if exists test')
+#    db.execute('create table test(t1 text, i1 int)')
+#    db.execute('insert into test(t1, i1) values(?, ?)', ('one', 1))
+#    db.execute('insert into test(t1, i1) values(?, ?)', ('two', 2))
+#    db.execute('insert into test(t1, i1) values(?, ?)', ('three', 3))
+#    db.execute('insert into test(t1, i1) values(?, ?)', ('four', 4))
+#    db.commit()
+#    cursor = db.execute('select i1, t1 from test order by t1')
+#    for row in cursor:
+#        print(dict(row))
+
+# if __name__ == "__main__": main()
