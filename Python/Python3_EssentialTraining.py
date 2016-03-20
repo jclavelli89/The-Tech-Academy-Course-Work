@@ -2317,9 +2317,6 @@
 
 # if __name__ == "__main__": main()
 
-##
-## 18. Debugging 
-##
 
 ##
 ## 18. Debugging
