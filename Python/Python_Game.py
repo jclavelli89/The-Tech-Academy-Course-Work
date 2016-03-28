@@ -18,14 +18,19 @@ def start():
 def begin():
     global apples
     global gold
-    print("Let's get started!")
     if gold > 99:
         print("You've won the game!")
         play = input("Do you want to play again?")
         if play =="Y":
+            global gold
+            global apples
+            apples = 0
+            gold = 0
             begin()
         if play =="N":
             print("Congrats again!")
+            time.sleep(2)
+            quit()
     pick = input("Do you want to pick an apple Y/N")
     if pick == "Y":
         time.sleep(1)
@@ -44,7 +49,11 @@ def begin():
               apples=0
               print("your gold is now: ",gold,"!")
               begin()
-              
+        if sell == "N":
+              begin()
+
+     
                
+
         
 start()
