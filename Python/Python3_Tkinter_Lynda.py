@@ -166,9 +166,247 @@
 ## Capturing input with buttons
 ##
 
-# Labels are for show, buttons give the users interaction  
+# Labels are for show, buttons give the users interaction
+
+# >>> from tkinter import ttk
+# >>> root = Tk()
+# >>> 
+# >>> button = ttk.Button(root, text = "Click Me")
+# >>> button.pack()
+# >>> def callback():
+# 	print('Clicked')
+
+	
+# >>> button.config(command = callback)
+# >>> Clicked
+# Clicked
+# Clicked
+# Clicked
+# Clicked
+
+# >>> button.invoke()
+# Clicked
+# 'None'
+# >>> button.state(['disabled'])
+# ('!disabled',)
+# >>> button.instate(['disabled'])
+# True
+# >>> button.state(['!disabled'])
+# ('disabled',)
+# >>> Clicked
+# Clicked
+# Clicked
+# Clicked
+# Clicked
+# Clicked
 
  
+# >>> button.instate(['!disabled'])
+# True
+# >>> 
+# >>> logo = PhotoImage(file = 'C:\\Users\\James Clavelli\\Desktop\\Ex_Files_Python_Tkinter\\Ex_Files_Python_Tkinter\\Exercise Files\\Ch03\\python_logo.gif')
+# >>> button.config(image = logo, compound = LEFT)
+# >>> Clicked
+# Clicked
+# Clicked
+# Traceback (most recent call last):
+#   File "<pyshell#20>", line 1, in <module>
+#     Clicked
+# NameError: name 'Clicked' is not defined
+# >>> small_logo = logo.subsample(5, 5)
+# >>> button.config(image = small_logo)
+# >>> 
+
+# In this section we learned, state, instate, invoke, config and subsample
+
+##
+## Presenting Choices with check buttons and radio buttons
+##
+
+# check button: slightly more advanced version of the basic button, can store binary value which makes them ideal for selecting or not selecting options from a series of choices (2 choices)
+# radio button: similar because they maintain a value, but not limited to two choices, user can make one selection from a series of mutually exclusive options
+
+# Tkinter Variable Classes that include change monitoring
+# BooleanVar
+# DoubleVar
+# IntVar
+# StringVar
+
+# >>> from tkinter import *
+# >>> from tkinter import ttk
+# >>> root = Tk()
+# >>> checkbutton = ttk.Checkbutton(root, text = 'SPAM?' )
+# >>> checkbutton.pack()
+# >>> spam = StringVar()
+# >>> spam.set('SPAM!')
+# >>> spam.get()
+# 'SPAM!'
+# >>> checkbutton.config(variable = spam, onvalue = 'SPAM Please!', offvalue = 'Boo SPAM')
+# >>> spam.get()
+# 'SPAM Please!'
+# >>> spam.get()
+# 'Boo SPAM'
+# >>> breakfast = StringVar()
+# >>> ttk.Radiobutton(root, text = 'SPAM', variable = breakfast, value = 'SPAM').pack()
+# >>> ttk.Radiobutton(root, text = 'Eggs', variable = breakfast, value = 'Eggs').pack()
+# >>> ttk.Radiobutton(root, text = 'Sausage', variable = breakfast, value = 'Sausage').pack()
+# >>> ttk.Radiobutton(root, text = 'SPAM', variable = breakfast, value = 'SPAM').pack()
+# >>> 
+# >>> breakfast.get()
+# 'Sausage'
+# >>> breakfast.get()
+# 'SPAM'
+# >>> checkbutton.config(textvariable = breakfast)
+# >>>
+
+# New methods:
+# Checkbutton(), .set(), Radiobutton(),
+
+##
+## Entering Single-Line text with the Entry widget 
+##
+
+# >>> from tkinter import *
+# >>> from tkinter import ttk
+# >>> root = Tk()
+# >>> entry = ttk.Entry(root, width = 30)
+# >>> entry.pack()
+# >>> entry.get()
+# 'Hello, Tkinter'
+# >>> entry.delete(0, 1)
+# >>> entry.delete(0, END)
+# >>> entry.insert(0, 'Enter your password')
+# >>> entry.config(show = '*')
+# >>> entry.get()
+# 'Enter your password'
+# >>> entry.state(['disabled'])
+# ('!disabled',)
+# >>> entry.state(['!disabled'])
+# ('disabled',)
+# >>> entry.state(['readonly'])
+# ('!readonly',)
+
+# New methods:
+# Entry(), get(), delete(), insert()
+
+##
+## Making selections with the combo box and spin box 
+##
+
+# When options increase use the combo and spin box
+# combo box widgit: A basic drop down selection tool with lots of options and a drop down box.
+# useful when your choices don't have a clear and rational order
+# sping box: See one option at a time and cycle through avail options with arros.
+# useful when you have a known order, link numbers in a row.
+
+# >>> from tkinter import *
+# >>> from tkinter import ttk
+# >>> root = Tk()
+# >>> month = StringVar()
+# >>> combobox = ttk.Combobox(root, textvariable = month)
+# >>> combobox.pack()
+# >>> combobox.config(values = ('Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 
+# 			      'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'))
+# >>> month.get()
+# 'Sep'
+# >>> month.set('Mar')
+# >>> month.set('Not a month')
+# >>> month.get()
+# 'Not a month'
+# >>> month.get()
+# 'Whatever they want to'
+# >>> year = StringVar()
+# >>> Spinbox(root, from_ = 1990, to = 2014, textvariable = year).pack()
+# >>> year.get()
+# '1993'
+# >>> 
+
+# New methods:
+# Spingbox(), Combobox
+
+##
+## Inputting values and displaying status with the Scale and Progressbar widgets
+##
+
+# Provide feedback to user with progress bar
+
+# >>> from tkinter import *
+# >>> from tkinter import ttk
+# >>> root = Tk()
+# >>> progressbar = ttk.Progressbar(root, orient = HORIZONTAL, length = 200)
+# >>> progressbar.pack()
+# >>> progressbar.config(mode = 'indeterminate')
+# >>> progressbar.start()
+# >>> progressbar.stop()
+# >>> progressbar.start()
+# >>> progressbar.stop()
+# >>> progressbar.config(mode = 'determinate', maximum = 11.0, value = 4.2)
+# >>> progressbar.config(value = 8.0)
+# >>> progressbar.step()
+# >>> progressbar.step(5)
+# >>> value = DoubleVar()
+# >>> progressbar.config(variable = value)
+# >>> scale = ttk.Scale(root, orient = HORIZONTAL, length = 400, variable = value, from_ = 0.0, to = 11.0)
+# >>> scale.pack()
+# >>> scale.set(4.2)
+# >>> scale.get()
+# 4.2
+ 
+# New methods:
+# Progressbar(), start(), stop(), Doublevar(), Scale()
+
+##
+## 4. Organizational Widgits 
+##
+
+##
+## Organizing widgets with frames
+##
+
+# Framers are fundamental widgits for organizing a Tkinter GUI
+# Frames act as parent and geometry manager to hold and organize other widgits
+# Used to organize a large gui into small, more manageable sub regions.
+# One frame for nav, one for user controls, one for displaying output
+# Frame border: 6 different types of frame relief.
+# Flat is default, raised (elevated or depressed), sunken, Solid, Ridge, Groove
+# Added like this: frame.config(relief = RIDGE)
+# When working with frames, make frame the parent, not root.
+# Geometry management: pack() is the basic, when frame is in pack()
+# when working WITHIN the frame, you can use grid() for more specific management
+
+# >>> from tkinter import *
+# >>> from tkinter import ttk
+# >>> root = Tk()
+# >>> frame = ttk.Frame(root)
+# >>> frame.pack()
+# >>> frame.config(height = 100, width = 200)
+# >>> frame.config(relief = RIDGE)
+# >>> ttk.Button(frame, text = 'Click Me').grid()
+# >>> frame.config(padding = (30, 15))
+# >>> ttk.LabelFrame(root, height = 100, width = 200, text = 'My Frame').pack()
+# >>> 
+
+# New constructor methods:
+# .Frame(), LabelFrame(), new property padding, use of grid() instead of pack(). 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
