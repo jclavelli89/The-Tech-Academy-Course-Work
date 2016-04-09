@@ -548,19 +548,157 @@
 
 ##### Rewatch this video 
 
+##
+## Entering and displaying multiple lines with the text widget 
+##
 
+# Text widgit is similar to entry widgit
+# Creates multi line area for text entry
+# Good for free form text entry, like login or survey
+# Wrap means how does the text get wrapped within the window, 'word' means it
+# wraps after and before words where there are spaces.
 
+# >>> from tkinter import *
+# >>> root = Tk()
+# >>> text = Text(root, width = 40, height = 10)
+# >>> text.pack()
+# >>> text.config(wrap = 'word')
+# >>> text.get('1.0', 'end')
+# 'This is a long message in the text box which is more than 40 characters. \n\n\n\n\n\n\n\nIf the message hits the bottom of the text box it will run off the screen. \n'
+# >>> text.get('1.0', '1.end')
+# 'This is a long message in the text box which is more than 40 characters. '
+# >>> text.insert('1.0 + 2 lines', 'Inserted message')
+# >>> text.insert('1.0 + 2 lines lineend', ' and\nmore and\nmore...')
+# >>> text.delete('1.0')
+# >>> text.delete('1.0', '1.0 lineend')
+# >>> text.delete('1.0', '3.0 lineend + 1 chars')
+# >>> text.replace('1.0', '1.0 lineend', 'This is the first line.')
+# >>> text.config(state = 'disabled')
+# >>> text.delete('1.0', 'end')
+# >>> text.config(state = 'normal')
 
+##
+## Building a hierarchical treeview
+##
 
+# Can add buttons and images using this method
 
+# >>> from tkinter import *
+# >>> root = Tk()
+# >>> text = Text(root, width = 40, height = 10)
+# >>> text.pack()
+# >>> text.config(wrap = 'word')
+# >>> text.get('1.0', 'end')
+# 'This is a long message in the text box which is more than 40 characters. \n\n\n\n\n\n\n\nIf the message hits the bottom of the text box it will run off the screen. \n'
+# >>> text.get('1.0', '1.end')
+# 'This is a long message in the text box which is more than 40 characters. '
+# >>> text.insert('1.0 + 2 lines', 'Inserted message')
+# >>> text.insert('1.0 + 2 lines lineend', ' and\nmore and\nmore...')
+# >>> text.delete('1.0')
+# >>> text.delete('1.0', '1.0 lineend')
+# >>> text.delete('1.0', '3.0 lineend + 1 chars')
+# >>> text.replace('1.0', '1.0 lineend', 'This is the first line.')
+# >>> text.config(state = 'disabled')
+# >>> text.delete('1.0', 'end')
+# >>> text.config(state = 'normal')
+# >>> text.tag_add('my_tag', '1.0', '1.0 wordend')
+# >>> text.tag_configure('my_tag', background = 'yellow')
+# >>> text.tag_remove('my_tag', '1.1', '1.3')
+# >>> text.tag_ranges('my_tag')
+# (<textindex object: '1.0'>, <textindex object: '1.1'>, <textindex object: '1.3'>, <textindex object: '1.4'>)
+# >>> text.tag_names()
+# ('sel', 'my_tag')
+# >>> text.tag_names('1.0')
+# ('my_tag',)
+# >>> text.replace('my_tag.first', 'my_tag.last', 'That')
+# >>> text.tag_delete('my_tag')
+# >>> text.mark_names()
+# ('insert', 'current', 'tk::anchor1')
+# >>> text.insert('insert', '_')
+# >>> text.mark_set('my_mark', 'end')
+# >>> text.mark_gravity('my_mark', 'right')
+# ''
+# >>> text.mark_unset('my_mark')
+ 
+##
+## Adding columns and selecting items in the treeview
+##
 
+# Add additional columns to the treeview. Use bind method to capture specific event. 
 
+# >>> from tkinter import *
+# >>> from tkinter import ttk
+# >>> root = Tk()
+# >>> treeview = ttk.Treeview(root)
+# >>> treeview.pack()
+# >>> treeview.insert('', '0', 'item1', text = 'First Item')
+# 'item1'
+# >>> treeview.insert('', '1', 'item2', text = 'Second Item')
+# 'item2'
+# >>> treeview.insert('', '2', 'item3', text = 'Third Item')
+# 'item3'
+# >>> logo = PhotoImage(file = 'C:\\Users\\James Clavelli\\Desktop\\Ex_Files_Python_Tkinter\\Ex_Files_Python_Tkinter\\Exercise Files\\Ch05\\python_logo.gif').subsample(10,10)
+# >>> treeview.insert('item2', 'end', 'python', text = 'Python', image = logo)
+# 'python'
+# >>> treeview.config(height = 5)
+# >>> treeview.move('item2', 'item1', 'end')
+# >>> treeview.item('item1', open = True)
+# {}
+# >>> treeview.item('item1', 'open')
+# 1
+# >>> treeview.detach('item3')
+# >>> treeview.move('item3', 'item2', '0')
+# >>> treeview.config(columns = ('version'))
+# {}
+# >>> treeview.column('#0', width = 150)
+# {}
+# >>> treeview.heading('version', text = 'Version')
+# {}
+# >>> treeview.set('python', 'version', '3.4.1')
+# ''
+# >>> treeview.item('python', tags = ('software'))
+# ''
+# >>> treeview.tag_configure('software', background = 'yellow')
+# {}
+# >>> def callback(event):
+# 	print(treeview.selection())
 
+	
+# >>> treeview.bind('<<TreeviewSelect>>', callback)
+# '48199000callback'
+# >>> ('item2',)
+# ('item3',)
+# ('python',)
+# ('item3',)
+# ('python',)
+# ('item3',)
+# ('python',)
+# ('item3',)
+# ('python',)
+# ('item3',)
+# ('python',)
+# ('item3', 'python')
+# ('item3',)
+# ('item3', 'python')
+# ('item3',)
+# ('item2',)
+# ('item3',)
+# ('python',)
+# ('item3',)
+# ('item3',)
+# ('item3',)
+# >>> treeview.config(selectmode = 'browse')
+# >>> treeview.config(selectmode = 'none')
+# >>> treeview.selection_add('python')
+# >>> ('item3', 'python')
+# ('item3', 'python')
+# ('item3', 'python')
+# >>> treeview.selection_toggle('python')
+# >>> ('item3',)
 
-
-
-
-
+##
+## Building cascading menus 
+##
 
 
 
