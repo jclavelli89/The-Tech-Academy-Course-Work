@@ -389,13 +389,164 @@
 # New constructor methods:
 # .Frame(), LabelFrame(), new property padding, use of grid() instead of pack(). 
 
+##
+## Creating additional top-level windows
+##
+
+# We can add additional windows with top level window widgit
+# each is its on Tk widgit object which can be the parent and geometry manager for other widgite
+# These are not part of the themed Tk widgit set, thus no import ttk
+
+# window.geometry('WIDTHxHEIGHT+X+Y')
+# The geometry method takes one parameter which is a string containing the
+# new width and height in pixels as well as the new x and y location of the windows
+# top left corner, relative to the top left corner of the string.
+# Format: Width in pixels, x, Height in pixels, +, x position, +, y position
+
+# >>> from tkinter import *
+# >>> root = Tk()
+# >>> window = Toplevel(root)
+# >>> window.title('New Window')
+# ''
+# >>> window.lower()
+# >>> window.lift(root)
+# >>> window.state('zoomed')
+# ''
+# >>> window.state('withdrawn')
+# ''
+# >>> window.state('iconic')
+# ''
+# >>> window.state('normal')
+# ''
+# >>> window.state
+# <bound method Wm.wm_state of <tkinter.Toplevel object .51587664>>
+# >>> window.state('normal')
+# ''
+# >>> window.iconify()
+# ''
+# >>> window.deiconify()
+# ''
+# >>> window.geometry('640x480+50+100')
+# ''
+# >>> window.resizable(False, False)
+# ''
+# >>> window.maxsize(640, 480)
+# >>> window.minsize(200, 200)
+# >>> window.resizable(True, True)
+# ''
+# >>> root.destroy()
+# >>> 
+
+# New constructor methods and parameters:
+# Toplevel(), title(), lower(), lift(), 'zoomed', 'withdrawn', 'iconic',
+# 'normal', iconify(), deiconify(), geometry('WIDTHxHEIGHT+X+Y'),
+# resizable(True/False, True/False), maxsize(), minsize()
+
+##
+## Separating widgets within paned windows 
+##
+
+# The paned window is a geometry management widgit which can hold other widgits
+# by stacking them vertically or horizontally
+# It displays a divider between each widgit which the user can click and drag
+# to adjust the relative size of the widgit within the window.
+
+# adding the weight property allows the two windows to scale relative to one another
 
 
+# >>> from tkinter import *
+# >>> from tkinter import ttk
+# >>> root = Tk()
+# >>> panedwindow = ttk.Panedwindow(root, orient = HORIZONTAL)
+# >>> panedwindow.pack(fill = BOTH, expand = True)
+# >>> frame1 =ttk.Frame(panedwindow, width = 100, height = 300, relief = SUNKEN)
+# >>> frame2 =ttk.Frame(panedwindow, width = 400, height = 400, relief = SUNKEN)
+# >>> panedwindow.add(frame1, weight = 1)
+# >>> panedwindow.add(frame2, weight = 4)
+# >>> frame3 =ttk.Frame(panedwindow, width = 50, height = 400, relief = SUNKEN)
+# >>> panedwindow.insert(1, frame3)
+# >>> panedwindow.forget(1) 
 
+# New constructor methods and parameters:
+# Pandedwindow(root, orient = horizontal/vertical), parameters for pack(fill, expand = true/false)
+# .Frame(parent, width, height, relief), add(frame, weight), insert(index, frame), forget()
 
+##
+## Grouping widgeting within a tabbed notebook 
+##
 
+# Making tabs like a browser using the notebook widgit.
 
+# >>> from tkinter import *
+# >>> from tkinter import ttk
+# >>> root = Tk()
+# >>> notebook = ttk.Notebook(root)
+# >>> notebook.pack()
+# >>> frame1 = ttk.Frame(notebook)
+# >>> frame2 = ttk.Frame(notebook)
+# >>> notebook.add(frame1, text = 'One')
+# >>> notebook.add(frame2, text = 'Two')
+# >>> ttk.Button(frame1, text = 'Click Me').pack()
+# >>> frame3 = ttk.Frame(notebook)
+# >>> notebook.insert(1, frame3, text = 'Three')
+# >>> notebook.forget(1)
+# >>> notebook.add(frame3, text = 'Three')
+# >>> notebook.select()
+# '.51124944.53631120'
+# >>> notebook.index(notebook.select())
+# 1
+# >>> notebook.select(2)
+# ''
+# >>> notebook.tab(1, state = 'disabled')
+# {}
+# >>> notebook.tab(1, state = 'hidden')
+# {}
+# >>> notebook.tab(1, state = 'normal')
+# {}
+# >>> notebook.tab(1, 'text')
+# 'Two'
+# >>> notebook.tab(1)
+# {'compound': 'none', 'sticky': 'nsew', 'padding': [0], 'underline': -1, 'text': 'Two', 'image': '', 'state': 'normal'}
+ 
+# New constructor methods and parameters:
+# Notebook(), .index(what you're looking for the index of), .tab(), punching
+# the index into notebook.tab(1) to reveal its properties.
 
+##
+## 5. Advanced Widgits
+##
+
+##
+## Entering and displaying multiple lines with the Text widget 
+##
+
+# Similar to the entry widgit, it creates multi line area for text entry
+# useful for things like surveys and comment boxes or login windows.
+# powerful and complex, used for simple login into interactive code editor
+# like IDLE.
+
+# >>> from tkinter import *
+# >>> root = Tk()
+# >>> text = Text(root, width = 40, height = 10)
+# >>> text.pack()
+# >>> text.config(wrap = 'word')
+# >>> text.get('1.0', 'end')
+# 'This is a long message in the text box which is more than 40 characters.\n\n\n\n\n\n\n\nIf the message hits the bottom of the text box it will run off the screen.\n'
+# >>> text.get('1.0', '1.end')
+# 'This is a long message in the text box which is more than 40 characters.'
+# >>> text.insert('1.0 + 2 lines', 'inserted message')
+# >>> text.insert('1.0 + 2 lines lineend', ' and\nmore and\nmore...')
+# >>> text.delete('1.0')
+# >>> text.delete('1.0', '1.0 lineend')
+# >>> text.delete('1.0', '3.0 lineend + 1 chars')
+# >>> text.replace('1.0', '1.0 lineend', 'This is the first line.')
+# >>> text.config(state = 'disables')
+# >>> text.config(state = 'disabled')
+# >>> text.delete('1.0', 'end')
+# >>> text.config(state = 'normal')
+# >>> 
+
+##### Rewatch this video 
 
 
 
