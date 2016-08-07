@@ -105,16 +105,16 @@
 
 # class HelloApp:             #Writing the application as a Class, common practice 
 
-#     def __init__(self, master):  # All of the Tk widgit objects for the gui are created in the init constructor method, the init method takes the master parameter  
+# def __init__(self, master):  # All of the Tk widgit objects for the gui are created in the init constructor method, the init method takes the master parameter  
                                  # All handler methods are self contained within the class 
-#         self.label = ttk.Label(master, text = "Hello, Tkinter!")  #First widgit we create is a label, child of master, stored in a class variable so it can be accessed later so that we can change its text   
-#         self.label.grid(row = 0, column = 0, columnspan = 2)      #put into place using the grid command, puttin it where it belongs in the window
+# self.label = ttk.Label(master, text = "Hello, Tkinter!")  #First widgit we create is a label, child of master, stored in a class variable so it can be accessed later so that we can change its text   
+# self.label.grid(row = 0, column = 0, columnspan = 2)      #put into place using the grid command, puttin it where it belongs in the window
         
-#         ttk.Button(master, text = "Texas",
-#                    command = self.texas_hello).grid(row = 1, column = 0) # Makes the Texas button and puts it in its proper place with the grid manager
+# ttk.Button(master, text = "Texas",
+# command = self.texas_hello).grid(row = 1, column = 0) # Makes the Texas button and puts it in its proper place with the grid manager
 
-#         ttk.Button(master, text = "Hawaii",
-                   command = self.hawaii_hello).grid(row = 1, column = 1) # Makes the Hawaii button and puts it in its proper place with the grid manager
+# ttk.Button(master, text = "Hawaii",
+# command = self.hawaii_hello).grid(row = 1, column = 1) # Makes the Hawaii button and puts it in its proper place with the grid manager
 # In the bove you see that if the event is clicked it kicks in the below methods 
 #     def texas_hello(self):
 #         self.label.config(text = 'Howdy, Tkinter!')
@@ -873,10 +873,10 @@
 # print(button1.winfo_class())
 # style.configure('TButton', foreground = 'blue')
 # style.configure('Alarm.TButton', foreground = 'orange',
-                font = ('Arial', 24, 'bold'))
+               #  font = ('Arial', 24, 'bold'))
 # button2.configure(style = 'Alarm.TButton')
 # style.map('Alarm.TButton', foreground = [('pressed', 'pink'),
-                                         ('disabled', 'grey')])
+                                      #   ('disabled', 'grey')])
 # button2.state(['disabled'])
 
 # print(style.layout('TButton'))
@@ -1000,9 +1000,447 @@
 
 # root.mainloop()
 
+##
+## Using the Grid Geometry Manager 
+##
+
+# When app requires exact control of placement, use place manager
+# Specify location and size of widgit in absolute and relative terms
+
+# Pros
+# Provides exact control of widget location and size
+# Describe location in absolute and/or relative terms
+# Provides exact control
+
+# Cons
+# Difficult to manage a large number of widgets
+# **Use place manager for specialized pieces of GUI's which is placed inside of a frame
+
+# Other Grid Methods:
+# place_slaves(), place_configure(), place_info(), place_forget()
+
+# from tkinter import *
+# from tkinter import ttk        
+    
+# root = Tk()
+
+# root.geometry('640x480+200+200')
+
+# ttk.Label(root, text = "Yellow", background = 'yellow').place(x = 100, y = 50, width = 100, height = 50)
+# ttk.Label(root, text = "Blue",
+#           background = 'blue').place(relx = 0.5, rely = 0.5, anchor = 'center', relwidth = 0.5, relheight = 0.5)
+# ttk.Label(root, text = "Green",
+#           background = 'green').place(relx = 0.5, x = 100, rely = 0.5, y = 50)
+# ttk.Label(root, text = "Orange",
+#           background = 'orange').place(relx = 1.0, x = -5, y = 5, anchor = 'ne')
+
+# root.mainloop()
+
+##
+## 7. Event Handling
+##
+
+##
+## Configuring command callbacks 
+##
+
+# Events need to do things. Don't make useless buttons!
+
+# Lambda: creates an anonymous function creating the callback function ... huh?
+
+# Button
+# Checkbutton
+# Radiobutton
+# Spinbox
+# Scale
+# Scrollbar
+
+##
+## Binding to Keyboard Events 
+##
+
+# Trigger events based on events from the mouse or keyboard.
+# ButtonPress, Button
+
+# from tkinter import *
+# from tkinter import ttk        
 
 
+# root = Tk()
 
+# def callback(number):
+#     print(number)
+
+# ttk.Button(root, text = "Click Me 1", command = lambda: callback(1)).pack()  
+# ttk.Button(root, text = "Click Me 2", command = lambda: callback(2)).pack()
+# ttk.Button(root, text = "Click Me 3", command = lambda: callback(3)).pack()
+
+# root.mainloop()
+
+##
+## Binding to keyboard events 
+##
+
+# Callbacks only available for specific actions
+# Tkinter can bind to events with specific handlers
+# There's a wide variety of event types
+# Addt'l events: ButtonPress, ButtonRelease, Enter, Leave, Motion, KeyPress
+# KeyRelease, FocusIn, FocusOut
+
+# Event Format          |        Event Description
+# <Key>, <KeyPress>              User pressed any key
+# <KeyPress-Delete>              User pressed Delete key
+# <KeyRelease-Right>             User released Right Arrow key
+
+# Keyboard Events
+# Event Format                 |                   Event Description
+# a,b,c,1,2,3,etc.... and               User Pressed a "printable" key
+# <space>, <less>
+# <Shift_L>, <Control_R>, <F5>,         User pressed a "special" key
+# <Up>
+# <Return>                              User pressed the Enter key
+# <Control-Alt-Next>                    User pressed Ctrl+Alt+Page down keys
+
+# add argument to Lambda function     'lambda e:' the e is an argument 
+
+# The exercise in this section is really interesting, as each key press
+# reveals information about the key in the IDLE gui
+
+# from tkinter import *
+# from tkinter import ttk        
+    
+# root = Tk()
+
+# def key_press(event):
+#     print('type: {}'.format(event.type))
+#     print('widget: {}'.format(event.widget))
+#     print('char: {}'.format(event.char))
+#     print('keysym: {}'.format(event.keysym))
+#     print('keycode: {}'.format(event.keycode))
+
+# def shortcut(action):
+#     print(action)
+
+
+# root.bind('<Control-c>', lambda e: shortcut('Copy'))
+# root.bind('<Control-v>', lambda e: shortcut('Paste'))
+
+# root.mainloop()
+
+##
+## Binding to Mouse Events 
+##
+
+# Mouse buttons are 1, 2, 3 1 is left click, 2 is scroll, 3 is right click
+
+# Made a drawing application:
+
+# from tkinter import *
+# from tkinter import ttk        
+    
+# root = Tk()
+
+# def mouse_press(event):
+#     global prev
+#     prev = event
+#     print('type: {}'.format(event.type))
+#     print('widget: {}'.format(event.widget))
+#     print('num: {}'.format(event.num))
+#     print('x: {}'.format(event.x))
+#     print('y: {}'.format(event.y))
+#     print('x_root: {}'.format(event.x_root))
+#     print('y_root: {}'.format(event.y_root))
+
+
+# canvas = Canvas(root, width = 640, height = 480, background = 'white')
+# canvas.pack()
+
+# def draw(event):
+#     global prev
+#     canvas.create_line(prev.x, prev.y, event.x, event.y, width = 5)
+#     prev = event
+
+# canvas.bind('<ButtonPress>', mouse_press)
+# canvas.bind('<B1-Motion>', draw)
+
+# root.mainloop()
+
+##
+## Binding to Virtual Events
+##
+
+# from tkinter import *
+# from tkinter import ttk        
+    
+# root = Tk()
+
+# entry = ttk.Entry(root)
+# entry.pack()
+
+# entry.bind('<<Copy>>', lambda e: print('Copy'))
+# entry.bind('<<Paste>>', lambda e: print('Paste'))
+
+# entry.event_add('<<OddNumber>>', '1', '3', '5', '7', '9')
+# entry.bind('<<OddNumber>>', lambda e: print('Odd Number'))
+
+# print(entry.event_info('<<OddNumber>>'))
+
+# entry.event_generate('<<OddNumber>>')
+# entry.event_generate('<<Paste>>')
+
+# entry.event_delete('<<OddNumber>>')
+
+# root.mainloop()
+
+##
+## Binding to multiple events
+##
+
+# from tkinter import *
+# from tkinter import ttk        
+    
+# root = Tk()
+
+# label1 = ttk.Label(root, text = 'Label 1')
+# label2 = ttk.Label(root, text = 'Label 2')
+# label1.pack()
+# label2.pack()
+
+# label1.bind('<ButtonPress>', lambda e: print('<ButtonPress> Label1'))
+# label1.bind('<1>', lambda e: print('<1> Label'))
+
+# root.bind('<1>', lambda e: print('<1> Root'))
+
+# label1.unbind('<1>')
+# label1.unbind('<ButtonPress>')
+
+# root.bind_all('<Escape>', lambda e: print("Escape!"))
+
+# root.mainloop()
+
+##
+## 8. Building an Application 
+##
+
+##
+## Defining project requirements
+##
+
+##
+## Planning the Design
+##
+
+##
+## Creating the widgets
+##
+
+# from tkinter import *
+# from tkinter import ttk
+
+# class Feedback:
+
+#     def __init__(self, master):    
+
+#         self.frame_header = ttk.Frame(master)
+
+#         self.logo = PhotoImage(file = 'tour_logo.gif')
+#         ttk.Label(self.frame_header, image = self.logo)
+#         ttk.Label(self.frame_header, text = "Thanks for Exploring!")
+#         ttk.Label(self.frame_header, text = ("We're glad you chose Explore California for your recent adventure. "
+                                             "Please tell us what yo uthought about the 'Desert to Sea' tour."))
+        
+
+#         self.frame_content = ttk.Frame(master)
+
+#         ttk.Label(self.frame_content, text = 'Name:')
+#         ttk.Label(self.frame_content, text = 'Email:')
+#         ttk.Label(self.frame_content, text = 'Comments:')
+
+#         self.entry_name = ttk.Entry(self.frame_content, width = 24)
+#         self.entry_email = ttk.Entry(self.frame_content, width = 24)
+
+#         self.text_comments = Text(self.frame_content, width = 50, height = 10)
+
+#         ttk.Button(self.frame_content, text = 'Submit')
+#         ttk.Button(self.frame_content, text = 'Clear')
+        
+        
+            
+# def main():            
+    
+#     root = Tk()
+#     feedback = Feedback(root)
+#     root.mainloop()
+    
+# if __name__ == "__main__": main()
+
+
+##
+## Laying out of the widgets 
+##
+
+# from tkinter import *
+# from tkinter import ttk
+
+# class Feedback:
+
+#     def __init__(self, master):    
+
+#         self.frame_header = ttk.Frame(master)
+#         self.frame_header.pack()
+        
+#         self.logo = PhotoImage(file = 'tour_logo.gif')
+#         ttk.Label(self.frame_header, image = self.logo).grid(row = 0, column = 0, rowspan = 2)
+#         ttk.Label(self.frame_header, text = 'Thanks for Exploring!').grid(row = 0, column = 1)
+#         ttk.Label(self.frame_header, wraplength = 300,
+#                   text = ("We're glad you chose Explore California for your recent adventure.  "
+                          "Please tell us what you thought about the 'Desert to Sea' tour.")).grid(row = 1, column = 1)
+
+#         self.frame_content = ttk.Frame(master)
+#         self.frame_content.pack()
+        
+#         ttk.Label(self.frame_content, text = 'Name:').grid(row = 0, column = 0, padx = 5, sticky = 'sw')
+#         ttk.Label(self.frame_content, text = 'Email:').grid(row = 0, column = 1, padx = 5, sticky = 'sw')
+#         ttk.Label(self.frame_content, text = 'Comments:').grid(row = 2, column = 0, padx = 5, sticky = 'sw')
+
+#         self.entry_name = ttk.Entry(self.frame_content, width = 24)
+#         self.entry_email = ttk.Entry(self.frame_content, width = 24)
+#         self.text_comments = Text(self.frame_content, width = 50, height = 10)
+
+#         self.entry_name.grid(row = 1, column = 0, padx = 5)
+#         self.entry_email.grid(row = 1, column = 1, padx = 5)
+#         self.text_comments.grid(row = 3, column = 0, columnspan = 2, padx = 5)
+
+#         ttk.Button(self.frame_content, text = 'Submit').grid(row = 4, column = 0, padx = 5, pady = 5, sticky = 'e')
+#         ttk.Button(self.frame_content, text = 'Clear').grid(row = 4, column = 1, padx = 5, pady = 5, sticky = 'w')
+
+# def main():            
+    
+#     root = Tk()
+#     feedback = Feedback(root)
+#     root.mainloop()
+    
+# if __name__ == "__main__": main()
+
+##
+## Binding to events
+##
+
+# from tkinter import *
+# from tkinter import ttk
+# from tkinter import messagebox
+
+# class Feedback:
+
+#     def __init__(self, master):    
+
+#         self.frame_header = ttk.Frame(master)
+#         self.frame_header.pack()
+        
+#         self.logo = PhotoImage(file = 'tour_logo.gif')
+#         ttk.Label(self.frame_header, image = self.logo).grid(row = 0, column = 0, rowspan = 2)
+#         ttk.Label(self.frame_header, text = 'Thanks for Exploring!').grid(row = 0, column = 1)
+#         ttk.Label(self.frame_header, wraplength = 300,
+#                   text = ("We're glad you chose Explore California for your recent adventure.  "
+#                           "Please tell us what you thought about the 'Desert to Sea' tour.")).grid(row = 1, column = 1)
+
+#         self.frame_content = ttk.Frame(master)
+#         self.frame_content.pack()
+        
+#         ttk.Label(self.frame_content, text = 'Name:').grid(row = 0, column = 0, padx = 5, sticky = 'sw')
+#         ttk.Label(self.frame_content, text = 'Email:').grid(row = 0, column = 1, padx = 5, sticky = 'sw')
+#         ttk.Label(self.frame_content, text = 'Comments:').grid(row = 2, column = 0, padx = 5, sticky = 'sw')
+
+#         self.entry_name = ttk.Entry(self.frame_content, width = 24)
+#         self.entry_email = ttk.Entry(self.frame_content, width = 24)
+#         self.text_comments = Text(self.frame_content, width = 50, height = 10)
+
+#         self.entry_name.grid(row = 1, column = 0, padx = 5)
+#         self.entry_email.grid(row = 1, column = 1, padx = 5)
+#         self.text_comments.grid(row = 3, column = 0, columnspan = 2, padx = 5)
+
+#         ttk.Button(self.frame_content, text = 'Submit', command = self.submit).grid(row = 4, column = 0, padx = 5, pady = 5, sticky = 'e')
+#         ttk.Button(self.frame_content, text = 'Clear', command = self.clear).grid(row = 4, column = 1, padx = 5, pady = 5, sticky = 'w')
+
+#     def submit(self):
+#         print('Name: {}'.format(self.entry_name.get()))
+#         print('Email: {}'.format(self.entry_email.get()))
+#         print('Comments: {}'.format(self.text_comments.get(1.0, 'end')))
+#         self.clear()
+#         messagebox.showinfo(title = 'Explore California Feedback', message = 'Comments Submitted!')
+                            
+#     def clear(self):
+#         self.entry_name.delete(0, 'end')
+#         self.entry_email.delete(0, 'end')
+#         self.text_comments.delete(1.0, 'end')
+
+# def main():            
+    
+#     root = Tk()
+#     feedback = Feedback(root)
+#     root.mainloop()
+    
+# if __name__ == "__main__": main()
+
+##
+## Finishing the GUI with style
+##
+
+# from tkinter import *
+# from tkinter import ttk
+# from tkinter import messagebox
+
+# class Feedback:
+
+#     def __init__(self, master):    
+
+#         self.frame_header = ttk.Frame(master)
+#         self.frame_header.pack()
+        
+#         self.logo = PhotoImage(file = 'tour_logo.gif')
+#         ttk.Label(self.frame_header, image = self.logo).grid(row = 0, column = 0, rowspan = 2)
+#         ttk.Label(self.frame_header, text = 'Thanks for Exploring!').grid(row = 0, column = 1)
+#         ttk.Label(self.frame_header, wraplength = 300,
+#                   text = ("We're glad you chose Explore California for your recent adventure.  "
+                          "Please tell us what you thought about the 'Desert to Sea' tour.")).grid(row = 1, column = 1)
+
+#         self.frame_content = ttk.Frame(master)
+#         self.frame_content.pack()
+        
+#         ttk.Label(self.frame_content, text = 'Name:').grid(row = 0, column = 0, padx = 5, sticky = 'sw')
+#         ttk.Label(self.frame_content, text = 'Email:').grid(row = 0, column = 1, padx = 5, sticky = 'sw')
+#         ttk.Label(self.frame_content, text = 'Comments:').grid(row = 2, column = 0, padx = 5, sticky = 'sw')
+
+#         self.entry_name = ttk.Entry(self.frame_content, width = 24)
+#         self.entry_email = ttk.Entry(self.frame_content, width = 24)
+#         self.text_comments = Text(self.frame_content, width = 50, height = 10)
+
+#         self.entry_name.grid(row = 1, column = 0, padx = 5)
+#         self.entry_email.grid(row = 1, column = 1, padx = 5)
+#         self.text_comments.grid(row = 3, column = 0, columnspan = 2, padx = 5)
+
+#         ttk.Button(self.frame_content, text = 'Submit', command = self.submit).grid(row = 4, column = 0, padx = 5, pady = 5, sticky = 'e')
+#         ttk.Button(self.frame_content, text = 'Clear', command = self.clear).grid(row = 4, column = 1, padx = 5, pady = 5, sticky = 'w')
+
+#     def submit(self):
+#         print('Name: {}'.format(self.entry_name.get()))
+#         print('Email: {}'.format(self.entry_email.get()))
+#         print('Comments: {}'.format(self.text_comments.get(1.0, 'end')))
+#         self.clear()
+#         messagebox.showinfo(title = 'Explore California Feedback', message = 'Comments Submitted!')
+                            
+#     def clear(self):
+#         self.entry_name.delete(0, 'end')
+#         self.entry_email.delete(0, 'end')
+#         self.text_comments.delete(1.0, 'end')
+
+# def main():            
+    
+#     root = Tk()
+#     feedback = Feedback(root)
+#     root.mainloop()
+    
+# if __name__ == "__main__": main()
 
 
 
