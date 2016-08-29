@@ -1,13 +1,17 @@
 import shutil
 import os
-
-source_files = "C:\Users\James Clavelli\Desktop\A"
-destination_files = "C:\Users\James Clavelli\Desktop\B"
             
-
-def move_files():
-    for files in os.listdir(source_files):
-        shutil.move(source_files, destination_files)
+def move_files(src_path, dst_path):
+    for files in os.listdir(src_path):
+        if files.endswith(".txt"):
+            src_file = os.path.join(src_path, files)
+            dst_file = os.path.join(dst_path, files)
+            shutil.move(src_file, dst_path)
+            print("\nFile: {}\nMoved to: {}".format(files, dst_file))
         
-
-move_files()
+        
+if __name__ == '__main__':
+    src_path = "C:\Users\James Clavelli\Desktop\A"
+    dst_path = "C:\Users\James Clavelli\Desktop\B"
+    
+    move_files(src_path,dst_path)
