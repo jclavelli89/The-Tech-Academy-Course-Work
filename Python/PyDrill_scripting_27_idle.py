@@ -9,8 +9,8 @@ def daily_copy_script(src_path, dst_path):
         if files.endswith(".txt") and mtime > ago:
             src_file = os.path.join(src_path, files)
             dst_file = os.path.join(dst_path, files)
-            shutil.copy(src_file, dst_path)
-            #print("\nFile: {}\ncopied to: {}".format(files, dst_file))
+            shutil.move(src_file, dst_path)
+            print("\nFile: {}\nmoved to: {}".format(files, dst_file))
 
 
 
