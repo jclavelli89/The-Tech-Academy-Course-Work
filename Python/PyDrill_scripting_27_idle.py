@@ -25,6 +25,10 @@ if __name__ == '__main__':
     
     daily_copy_script(src_path,dst_path)
 
+
+
+
+
 """
 utilizing os.stat, we want to add to file_mover a timer utilizing datetime .now
 with > or < symbols and using the read out of a condition provided by os.stat
