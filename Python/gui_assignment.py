@@ -1,3 +1,4 @@
+import tk
 import wx
 
 class guiClass(wx.Frame):

@@ -1,4 +1,6 @@
-import wx
+from tkinter import *
+from tkinter import ttk 
+
 
 class windowClass(wx.Frame):
 
